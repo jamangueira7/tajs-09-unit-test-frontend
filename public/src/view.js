@@ -1,7 +1,7 @@
 const WAS_VALIDATED_CLASS = 'was-validated'
 export default class View {
     #forms = document.querySelectorAll('.needs-validation')
-    #title = document.querySelector('#title')
+    #title = document.getElementById('title')
     #cardList = document.querySelector('#card-list')
 
     #submitFn = () => { }
@@ -23,8 +23,6 @@ export default class View {
          */
         return (event) => {
             form.classList.add(WAS_VALIDATED_CLASS)
-            console.log('passou aqui')
-            console.log(event)
             event.preventDefault()
             event.stopPropagation()
 
@@ -34,13 +32,14 @@ export default class View {
                 return;
             }
 
+
             form.classList.remove(WAS_VALIDATED_CLASS)
 
             this.#title.focus()
-
+            
             this.#submitFn({
-                title: form.title.value,
-                imageUrl: form.imageUrl.value
+                title: form.title?.value,
+                imageUrl: form.imageUrl?.value
             })
 
             form.reset()
